@@ -3,7 +3,7 @@ import { connectToDatabase } from '../utils/dbConnect.js';
 
 const router = Router();
 
-router.get('/:postulante', async (req, res) => {
+router.get('/:id', async (req, res) => {
   let db;
   try {
     const { postulante } = req.params;

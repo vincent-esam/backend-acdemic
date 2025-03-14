@@ -6,18 +6,23 @@ import produccionesRouter from '../routes/produccionesIntelectuales.js';
 
 const app = express();
 
-// Middleware
+// Middleware esencial
 app.use(cors());
 app.use(express.json());
 
-// Rutas bajo /api
+// Configuración de rutas
 app.use('/api/docentes', docenteRouter);
 app.use('/api/producciones', produccionesRouter);
 
-// Health Check
+// Ruta raíz para evitar 404
 app.get('/api', (req, res) => {
-  res.json({ status: 'API operativa', version: '1.0.0' });
+  res.json({ 
+    status: "API operativa ✅",
+    endpoints: {
+      docentes: "/api/docentes/{id}",
+      producciones: "/api/producciones"
+    }
+  });
 });
 
-// Exportación requerida por Vercel
 export default serverless(app);
