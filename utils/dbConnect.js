@@ -2,15 +2,15 @@
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config(); // Carga las variables de entorno desde el archivo .env
 
 export const connectToDatabase = async () => {
   try {
     const connection = await mysql.createConnection({
-      host: "149.28.34.53",
-      user: "acadcbba_vins",
-      password: "Vins8039368",
-      database: "acadcbba_esamdb",
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
     });
     console.log('✅ Conexión exitosa a MySQL');
     return connection;
